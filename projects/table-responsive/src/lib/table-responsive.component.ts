@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
+@Component({ 
   selector: 'table-responsive',
-  template: `
-    <p>
-      table-responsive works!
-    </p>
-  `,
-  styles: []
+  templateUrl: './table-responsive.component.html',
+  styleUrls: ['./table-responsive.component.scss']
 })
 export class TableResponsiveComponent implements OnInit {
 
