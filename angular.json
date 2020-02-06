@@ -1,0 +1,164 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "table-responsive": {
+      "projectType": "library",
+      "root": "projects/table-responsive",
+      "sourceRoot": "projects/table-responsive/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/table-responsive/tsconfig.lib.json",
+            "project": "projects/table-responsive/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/table-responsive/src/test.ts",
+            "tsConfig": "projects/table-responsive/tsconfig.spec.json",
+            "karmaConfig": "projects/table-responsive/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/table-responsive/tsconfig.lib.json",
+              "projects/table-responsive/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "POC": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/POC",
+      "sourceRoot": "projects/POC/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/POC",
+            "index": "projects/POC/src/index.html",
+            "main": "projects/POC/src/main.ts",
+            "polyfills": "projects/POC/src/polyfills.ts",
+            "tsConfig": "projects/POC/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/POC/src/favicon.ico",
+              "projects/POC/src/assets"
+            ],
+            "styles": [
+              "projects/POC/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/POC/src/environments/environment.ts",
+                  "with": "projects/POC/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "POC:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "POC:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "POC:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/POC/src/test.ts",
+            "polyfills": "projects/POC/src/polyfills.ts",
+            "tsConfig": "projects/POC/tsconfig.spec.json",
+            "karmaConfig": "projects/POC/karma.conf.js",
+            "assets": [
+              "projects/POC/src/favicon.ico",
+              "projects/POC/src/assets"
+            ],
+            "styles": [
+              "projects/POC/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/POC/tsconfig.app.json",
+              "projects/POC/tsconfig.spec.json",
+              "projects/POC/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/POC/e2e/protractor.conf.js",
+            "devServerTarget": "POC:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "POC:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "table-responsive"
+}
