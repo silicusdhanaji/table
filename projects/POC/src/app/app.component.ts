@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'POC';
+  myObj = { "name":"John", "age":30, "car":null };
 }

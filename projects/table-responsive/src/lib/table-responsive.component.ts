@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({ 
   selector: 'table-responsive',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table-responsive.component.scss']
 })
 export class TableResponsiveComponent implements OnInit {
-
+  @Input() data;
   constructor() { }
 
   ngOnInit() {
